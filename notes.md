@@ -49,6 +49,20 @@ const sender = nodemailer.createTransport({
 - Schedule a job 
 
 
+## ❤️ **Requirement** :
+Send email before 48 hours of flight 
+Ex : 14 jan flight ➡️ send email 12 jan 
+
+
+## ⭕ **Sequelize Setup**
+1. `npx sequelize init`
+
+2. `npx sequelize db:create`
+
+3. ``` npx sequelize model:generate --name   NotificationTicket --attributes subject:string,
+content:string,recipientEmail:string,status:enum,
+notifcationTime:data ```
+4.`npx sequelize db:migrate`
 <style>
 red { color: red }
 yellow { color: yellow }
