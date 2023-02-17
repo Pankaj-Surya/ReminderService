@@ -6,7 +6,8 @@ const {PORT} = require('./config/serverConfig')
 const {EMAIL_PASS,EMAIL_ID} = require('./config/serverConfig')
 
 const {sendBasicEmail} = require('./services/email-service')
-var cron = require('node-cron');
+const TicketController = require('./controllers/ticket-controller')
+const job = require('./utils/job')
 
 
 //console.log(EMAIL_ID,EMAIL_PASS)
@@ -17,10 +18,12 @@ const setupAndStartServer = () =>{
     app.use(bodyParser.json())
     app.use(bodyParser.urlencoded({extended: true}))
    
+    app.post('/api/v1/tickets',TicketController.create)
     app.listen(PORT,()=>{
         console.log(`Server started successfully ${PORT}`);
         //myselfpankajsuryavanshi@gmail.com
 
+        job();
         // sendBasicEmail(
         //     'myselfpankajsuryavanshi@gmail.com',
         //     'moviebookingappservice@gmail.com',
